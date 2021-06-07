@@ -1,5 +1,5 @@
 <template>
-  <el-container>
+  <el-container class="layout">
     <el-aside width="200px">
       <app-aside />
     </el-aside>
@@ -30,7 +30,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.el-container {
+.layout {
   min-height: 100vh;
   min-width: 980px;
 }

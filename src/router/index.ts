@@ -75,6 +75,22 @@ const routes: Array<RouteConfig> = [
         path: '/resource/category',
         name: 'resource-category',
         component: () => import(/* webpackChunkName:'resource-category' */ '@/views/resource/category.vue')
+      },
+      {
+        path: '/role/:roleId/allocMenu',
+        name: 'role-allocMenu',
+        props: true, // 将路由路径参数映射到组件的 props 数据中
+        component: () => import(/* webpackChunkName:'role-allocMenu' */ '@/views/role/alloc-menu.vue')
+      },
+      {
+        path: '/role/:roleId/allocResource',
+        name: 'role-allocResource',
+        component: () => import(/* webpackChunkName:'role-allocResource' */ '@/views/role/alloc-resource.vue')
+      },
+      {
+        path: '/course/edit',
+        name: 'course-edit',
+        component: () => import(/* webpackChunkName:'course-edit' */ '@/views/course/edit.vue')
       }
     ]
   },

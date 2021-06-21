@@ -1,18 +1,13 @@
 <template>
-  <div class="advert">
-    <advert-list />
+  <div class="no-permission">
+    没有权限查看
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import AdvertList from './components/advert-list.vue'
-
 export default Vue.extend({
-  name: 'AdvertIndex',
-  components: {
-    AdvertList
-  }
+  name: 'NoPermission'
 })
 </script>
 

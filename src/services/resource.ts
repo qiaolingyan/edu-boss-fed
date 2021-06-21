@@ -68,3 +68,21 @@ export const deleteResourceCategory = (id: number) => {
     url: `/boss/resource/category/${id}`
   })
 }
+
+export const getRoleResources = (roleId: number | string) => {
+  return request({
+    method: 'GET',
+    url: '/boss/resource/getRoleResources',
+    params: {
+      roleId
+    }
+  })
+}
+
+export const allocateRoleResources = (data: any) => {
+  return request({
+    method: 'POST',
+    url: '/boss/resource/allocateRoleResources',
+    data
+  })
+}

@@ -1,11 +1,16 @@
 <template>
   <div class="login">
-    <h1>Edu boss管理系统</h1>
+    <header>
+      <h1>
+        <a href="#"> Edu boss管理系统</a>
+      </h1>
+    </header>
+
     <el-form ref="form"
              label-position="top"
              :model="form"
              :rules="rules"
-             class="login-form"
+             :class="isShaking ? 'shaking' : ''"
              label-width="80px">
       <el-form-item label="手机号"
                     prop="phone">
@@ -58,12 +63,14 @@ export default Vue.extend({
           }
         ]
       },
-      isLoginLoading: false
+      isLoginLoading: false,
+      isShaking: false
     }
   },
   methods: {
     async onSubmit() {
       try {
+        this.isShaking = false
         // 1. 表单验证
         // this.$refs.form.validate()
         await (this.$refs.form as Form).validate()
@@ -84,6 +91,7 @@ export default Vue.extend({
           this.$message.success('登录成功')
         }
       } catch (err) {
+        this.isShaking = true
         this.$message.error('登录失败' + err)
       }
       // 结束登录按钮 loading
@@ -95,18 +103,91 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .login {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  .login-form {
-    width: 300px;
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 5px;
-    .login-btn {
+  width: 95%;
+  max-width: 22rem;
+  margin: 1rem auto;
+
+  header {
+    margin-bottom: 1rem;
+
+    h1 {
+      margin: 4.5rem 0 3.5rem;
+      text-align: center;
+      letter-spacing: 0.1em;
+
+      a {
+        margin: 0;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 3rem;
+        font-weight: 300;
+        text-decoration: none;
+        transition: text-shadow 0.3s;
+
+        &:hover {
+          text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+  }
+
+  .el-form {
+    margin-bottom: 2.5rem;
+    padding: 1.875rem 1.25rem;
+    background: #fff;
+
+    h2 {
+      margin: 0 0 1rem;
+      font-weight: 400;
+      font-size: 1.5rem;
+    }
+
+    .el-button {
+      margin-top: 0.5rem;
       width: 100%;
+    }
+
+    &.shaking {
+      animation: shakeX 1s;
+    }
+  }
+
+  footer {
+    margin-bottom: 1rem;
+    padding: 0.625rem;
+    border: 0.0625rem solid rgba(0, 0, 0, 0.1);
+    font-size: 0.75rem;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.6);
+
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  @keyframes shakeX {
+    from,
+    to {
+      transform: translate3d(0, 0, 0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+      transform: translate3d(-10px, 0, 0);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+      transform: translate3d(10px, 0, 0);
     }
   }
 }

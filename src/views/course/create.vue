@@ -1,17 +1,16 @@
 <template>
-  <div class="advert">
-    <advert-list />
+  <div class="course-create">
+    <create-update />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import AdvertList from './components/advert-list.vue'
-
+import CreateUpdate from './components/create-update.vue'
 export default Vue.extend({
-  name: 'AdvertIndex',
+  name: 'CourseCreate',
   components: {
-    AdvertList
+    CreateUpdate
   }
 })
 </script>

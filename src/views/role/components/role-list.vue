@@ -12,7 +12,7 @@
         <el-form-item>
           <el-button type="primary"
                      :disabled="isLoading"
-                     @click="handleSearchResource">查询搜索
+                     @click="loadAllroles">查询搜索
           </el-button>
           <el-button type="primary"
                      @click="handleReset">重置
@@ -45,7 +45,7 @@
         <el-table-column label="操作">
           <template slot-scope="scope">
             <el-button @click="$router.push({
-                          name:'role-allocMenu',
+                          name:'AllocMenu',
                           params:{
                             roleId:scope.row.id
                           }
@@ -53,7 +53,7 @@
                        type="text"
                        size="small">分配菜单</el-button>
             <el-button @click="$router.push({
-                          name:'role-allocResource',
+                          name:'AllocResource',
                           params:{
                             roleId:scope.row.id
                           }

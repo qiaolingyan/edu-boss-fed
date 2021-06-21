@@ -1,17 +1,16 @@
 <template>
-  <div class="advert">
-    <advert-list />
+  <div class="create">
+    <create-edit />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import AdvertList from './components/advert-list.vue'
-
+import CreateEdit from './components/create-edit.vue'
 export default Vue.extend({
-  name: 'AdvertIndex',
+  name: 'Creates',
   components: {
-    AdvertList
+    CreateEdit
   }
 })
 </script>

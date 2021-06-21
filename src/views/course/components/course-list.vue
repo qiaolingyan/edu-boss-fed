@@ -4,15 +4,17 @@
              :model="courseForm"
              class="demo-form-inline">
       <el-form-item label="课程名称">
-        <el-input v-model="courseForm.name"
+        <el-input v-model="courseForm.courseName"
                   placeholder="课程名称"></el-input>
       </el-form-item>
       <el-form-item label="状态">
         <el-select v-model="courseForm.status"
                    placeholder="请选择">
+          <el-option label="全部"
+                     value=""></el-option>
           <el-option v-for="item in statusList"
                      :key="item.value"
-                     :label="item.label"
+                     :label="item.name"
                      :value="item.value">
           </el-option>
         </el-select>
@@ -24,7 +26,7 @@
         <el-button type="primary"
                    icon="el-icon-plus"
                    @click="$router.push({
-                     name:'course-edit'
+                     name:'course-create'
                    })">新建课程</el-button>
       </el-form-item>
     </el-form>
@@ -65,10 +67,20 @@
       <el-table-column label="操作"
                        min-width="150">
         <template slot-scope="scope">
-          <el-button @click="handleDisabled(scope.row)"
+          <el-button @click="$router.push({
+                        name:'course-update',
+                        params:{
+                          courseId:scope.row.id
+                        }
+                      })"
                      type="text"
                      size="small">编辑</el-button>
-          <el-button @click="handleAllocRole(scope.row)"
+          <el-button @click="$router.push({
+                        name:'course-section',
+                        params:{
+                          courseId:scope.row.id
+                        }
+                      })"
                      type="text"
                      size="small">内容管理</el-button>
         </template>
@@ -94,14 +106,17 @@ export default Vue.extend({
     return {
       courses: [],
       courseForm: {
-        name: '',
+        courseName: 'q-test',
         status: '',
-        currentPage: 0,
+        currentPage: 1,
         pageSize: 10
       },
       totalCount: 0,
       isLoading: false,
-      statusList: []
+      statusList: [
+        { value: 0, name: '下架' },
+        { value: 1, name: '上架' }
+      ]
     }
   },
   created() {

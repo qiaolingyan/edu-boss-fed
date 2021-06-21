@@ -51,7 +51,9 @@ export default Vue.extend({
     }
   },
   created() {
-    this.getRole()
+    if (this.isEdit) {
+      this.getRole()
+    }
   },
   methods: {
     async handleSave() {
